@@ -45,6 +45,10 @@ namespace MyNavigationDrawer
             ButtonCloseMenu.Visibility = Visibility.Collapsed;
         }
 
+        private void Rectangle_PreviewMouseDown(object sender, RoutedEventArgs e) {
+            Console.WriteLine("Click");
+        }
+
         private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UserControl usc = null;
@@ -63,6 +67,14 @@ namespace MyNavigationDrawer
                 default:
                     break;
             }
+        }
+
+        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        {
+            base.OnMouseLeftButtonDown(e);
+
+            // Begin dragging the window
+            this.DragMove();
         }
     }
 }
