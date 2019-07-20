@@ -14,14 +14,14 @@
     </WindowChrome.WindowChrome>
 
     <Window.Resources>
-        <Style TargetType="Button" x:Key="TabButtonFirst">
+        <Style TargetType="{x:Type Button}" x:Key="ButtonWindowClose">
             <Setter Property="Background" Value="#FF5C99D6" />
             <Setter Property="TextBlock.TextAlignment" Value="Center" />
             <Setter Property="TextBlock.Foreground" Value="White" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="0,0,0,0" Background="#FF5C99D6" BorderBrush="#ccc" BorderThickness="0,0,0,0" >
+                        <Border CornerRadius="0,0,0,0" Background="{TemplateBinding Background}" BorderBrush="#ccc" BorderThickness="0,0,0,0" >
                             <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                         </Border>
                     </ControlTemplate>
@@ -29,7 +29,32 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="DarkGoldenrod"/>
+                    <Setter Property="Background" Value="OrangeRed"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="Red"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type Button}" x:Key="ButtonWindowSize">
+            <Setter Property="Background" Value="#FF5C99D6" />
+            <Setter Property="TextBlock.TextAlignment" Value="Center" />
+            <Setter Property="TextBlock.Foreground" Value="White" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="0,0,0,0" Background="{TemplateBinding Background}" BorderBrush="#ccc" BorderThickness="0,0,0,0" >
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="DarkBlue"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="Blue"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -57,9 +82,9 @@
     <Grid Background="#FFDEDEDE">
         <Grid>
             <Rectangle Fill="#FF5C99D6" HorizontalAlignment="Stretch" Height="35" VerticalAlignment="Top" PreviewMouseDown="Rectangle_PreviewMouseDown" />
-            <Button x:Name="Btnclose" Content="r" HorizontalAlignment="Right" VerticalAlignment="Top" Width="70" Height="35" Style="{StaticResource TabButtonFirst}"/>
-            <Button x:Name="Btnmax" Content="2" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,70,0" Width="70" Height="35" Style="{StaticResource TabButtonFirst}"/>
-            <Button x:Name="Btnmin" Content="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,140,0" Width="70" Height="35" Style="{StaticResource TabButtonFirst}"/>
+            <Button x:Name="Btnclose" Click="ButtonWindowClose_Click" Content="{materialDesign:PackIcon WindowClose}" HorizontalAlignment="Right" VerticalAlignment="Top" Width="70" Height="35" Style="{StaticResource ButtonWindowClose}"/>
+            <Button x:Name="Btnmax" Click="ButtonWindowMax_Click" Content="{materialDesign:PackIcon WindowMaximize}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,70,0" Width="70" Height="35" Style="{StaticResource ButtonWindowSize}"/>
+            <Button x:Name="Btnmin" Click="ButtonWindowMin_Click" Content="{materialDesign:PackIcon WindowMinimize}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,140,0" Width="70" Height="35" Style="{StaticResource ButtonWindowSize}"/>
         </Grid>
         <Grid x:Name="GridMain" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="540" Width="1010"/>
         <Grid Height="60" VerticalAlignment="Top" Margin="0, 35, 0, 0" Background="#FF5C99D6">

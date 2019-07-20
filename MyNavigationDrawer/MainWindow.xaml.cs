@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,6 +27,55 @@ namespace MyNavigationDrawer
         public MainWindow()
         {
             InitializeComponent();
+            
+        }
+
+        //protected override void OnStateChanged(EventArgs e)
+        //{
+        //    if (this.WindowState == System.Windows.WindowState.Maximized /* && some conditions*/)
+        //    {
+        //        Console.WriteLine("WindowState Max");
+        //        Btnmax.Content = new PackIcon { Kind = PackIconKind.WindowRestore };
+        //    }
+
+        //    else if (this.WindowState != System.Windows.WindowState.Maximized /* && other conditions*/)
+        //    {
+        //        Console.WriteLine("WindowState Min");
+        //        Btnmax.Content = new PackIcon { Kind = PackIconKind.WindowMaximize };
+        //    }
+
+        //}
+
+        private void ButtonWindowMin_Click(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("set Window Max");
+            WindowState = WindowState.Minimized;
+        }
+
+        private void ButtonWindowMax_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (this.WindowState == System.Windows.WindowState.Maximized /* && some conditions*/)
+            {
+                Console.WriteLine("WindowState Max");
+                WindowState = WindowState.Normal;
+                Btnmax.Content = new PackIcon { Kind = PackIconKind.WindowRestore };
+            }
+
+            else if (this.WindowState != System.Windows.WindowState.Maximized /* && other conditions*/)
+            {
+                Console.WriteLine("WindowState Min");
+                WindowState = WindowState.Maximized;
+                Btnmax.Content = new PackIcon { Kind = PackIconKind.WindowMaximize };
+
+            }
+        
+        }
+
+        private void ButtonWindowClose_Click(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("set Window Close");
+            System.Windows.Application.Current.Shutdown();
         }
 
         private void ButtonPopUpLogout_Click(object sender, RoutedEventArgs e)
